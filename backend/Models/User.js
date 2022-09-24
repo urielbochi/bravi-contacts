@@ -1,28 +1,19 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("./connection");
 
-const Contact = sequelize.define(
-  "Contact",
+const User = sequelize.define(
+  "User",
   {
     name: {
-      type: DataTypes.STRING,
-    },
-    phone: {
       type: DataTypes.STRING,
     },
     mail: {
       type: DataTypes.STRING,
     },
-    whatsapp: {
-      type: DataTypes.STRING,
-    },
-    userId: {
-        type: DataTypes.INTEGER,
-    }
   },
   {
     timestamps: false,
   }
 );
 
-module.exports = Contact;
+module.exports = User;
