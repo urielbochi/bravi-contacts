@@ -10,7 +10,7 @@ const Contact = sequelize.define(
     phone: {
       type: DataTypes.STRING,
     },
-    mail: {
+    email: {
       type: DataTypes.STRING,
     },
     whatsapp: {
