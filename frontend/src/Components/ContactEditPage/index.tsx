@@ -1,8 +1,43 @@
 import { useContext } from "react";
 import { ContactContext } from "../../Context/Event";
+import { editContact } from "../../Services";
 
-function ContactEditPage() {
-  const { setEditPageClicked }:any = useContext(ContactContext);
+function ContactEditPage({ selectedContact }: any) {
+    const {
+        setEditPageClicked,
+        newContactFields,
+        setNewContactFields,
+        contactList,
+        setContactList,
+        setContactClicked }: any = useContext(ContactContext);
+
+    const handleChange = ({ target }: any) => {
+        const { name, value } = target
+        setNewContactFields({
+            ...newContactFields,
+            [name]: value,
+        })
+    }
+
+    const editContactFrontChange = () => {
+        const contactListCopy = [...contactList];
+        const itemIndex = contactListCopy.findIndex(
+            (item) => parseInt(item.id) === parseInt(selectedContact)
+        );
+        contactListCopy[itemIndex] = newContactFields;
+        setContactList(contactListCopy);
+    };
+
+    const editContactEvents = () => {
+        editContact(newContactFields, selectedContact);
+        editContactFrontChange();
+        setContactClicked(false);
+        setNewContactFields({});
+        setEditPageClicked(false);
+    }
+
+
+
     return (
         <div>
             <div className='split right high-grade'>
@@ -27,7 +62,7 @@ function ContactEditPage() {
                             <label>Whatsapp</label>
                         </div>
                         <button type="button" className="btn" onClick={() =>
-                             createContact(addNewContactInput, contactList, setContactList, contacts)}>SAVE</button>
+                            editContactEvents()}>SAVE</button>
                     </div>
                 </div>
             </div>
