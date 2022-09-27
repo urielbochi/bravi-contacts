@@ -9,5 +9,7 @@ module.exports = async (id, { name, email, phone, whatsapp }) => {
     { name, email, phone, whatsapp },
     { where: { id } },
   );
+
+
   return updated;
 };
