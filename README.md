@@ -311,6 +311,7 @@ Exemplo:
   * Tornar a search bar funcional;
   * Adicionar seções no menu hamburguer;
   * Docker;
+  * Deploy;
 
   
 
