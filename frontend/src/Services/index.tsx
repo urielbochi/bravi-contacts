@@ -36,5 +36,19 @@ export async function createContact(newContactFields: any, contactList: any, set
 
 export async function deleteContact(contactId: any) {
     axios.delete(`http://localhost:3001/contacts/${contactId}`).then((response) => { }).catch((err) => console.log(err));
+}
 
+export async function editContact(newContactFields: any, contactId: number) {
+    axios
+        .put(`http://localhost:3001/contacts/${contactId}`, {
+            name: newContactFields.name,
+            phone: newContactFields.phone,
+            email: newContactFields.email,
+            whatsapp: newContactFields.whatsapp,
+        })
+        .then((response) => {
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 }

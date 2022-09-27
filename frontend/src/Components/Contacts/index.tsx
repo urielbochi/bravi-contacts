@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { getContactById, getContacts, createContact, deleteContact } from '../../Services';
+import { getContactById, getContacts } from '../../Services';
 import './index.css';
 import Plus from '../../Images/Plus.png';
 import Burguer from '../../Images/Burguer.png';
-import Kirsten from '../../Images/Kirsten.png';
-import ContactInfo from '../ContactInfo';
 import { useParams } from 'react-router-dom';
 import ContactPage from '../ContactPage';
 import ContactAddPage from '../ContactAddPage';
 import { ContactContext } from '../../Context/Event';
+import ContactEditPage from '../ContactEditPage';
 
 
 
@@ -20,9 +19,10 @@ function Contacts() {
     email: string;
     whatsapp: string;
     image: string;
-}
+  }
 
-let { contacts } = useParams()
+
+  let { contacts } = useParams();
 
 
 
@@ -30,19 +30,27 @@ let { contacts } = useParams()
   const [individualContact, setIndividualContact] = useState<IContact[]>([]);
   const [contactId, setContactId] = useState<number>();
   const [colectContact, setColectContact] = useState<any>([]);
-
+  const [searchBarTerm, setSearchBarTerm] = useState<string>("");
   {/* 
 // @ts-ignore */}
-  const { contactList, setContactList, isContactClicked, setContactClicked, addContactClicked, setAddContactClicked } = useContext(ContactContext);
+  const { contactList, setContactList, isContactClicked, setContactClicked, addContactClicked, setAddContactClicked, editPageClicked } = useContext(ContactContext);
 
 
   useEffect(() => {
     const pushContacts = async () => {
-        const user = await getContacts(setContactList, contacts);
+      const user = await getContacts(setContactList, contacts);
     };
 
     pushContacts();
-}, [])
+  }, [])
+
+
+  useEffect(() => {
+
+  }, [searchBarTerm])
+
+
+      console.log(searchBarTerm)
 
 
 
@@ -53,12 +61,16 @@ let { contacts } = useParams()
     };
 
     setContactId(contactId);
-    pushContact()
+    pushContact();
     setContactClicked(true);
-    setColectContact(item)
+    setColectContact(item);
   }
 
-  console.log(contactId)
+  function handleChange({target}:any) {
+    setSearchBarTerm(target.value)
+  }
+
+
 
   return (
     <div className="main__container">
@@ -68,16 +80,16 @@ let { contacts } = useParams()
         <img className='resize' src={Plus} onClick={() => setAddContactClicked(true)} />
       </div>
       <div className='search__center'>
-        <input className='search__contact' />
+        <input type="text" className='search__contact' onChange={handleChange} value={searchBarTerm} />
       </div>
       <div>
       </div>
       <ul className='contactList__container striped-list split left'>
-        {contactList.map((item:IContact) => {
+        {contactList.map((item: IContact) => {
           return (
             <div>
               <div className='split right'>
-                {isContactClicked && <ContactInfo image={`https://joeschmoe.io/api/v1/${contactId}`} />}
+                {isContactClicked && <img src={`https://joeschmoe.io/api/v1/${contactId}`} />}
               </div>
               <li className='contacts__name' onClick={() => recoverContactOnClick(item.id, item)}>
                 <img src={`https://joeschmoe.io/api/v1/${item.id}`} className="user__photo" />
@@ -91,9 +103,12 @@ let { contacts } = useParams()
         })}
       </ul>
 
-     {isContactClicked && <ContactPage contact={colectContact} contactId={contactId}/>}
- 
-      {addContactClicked && <ContactAddPage/>}
+      {isContactClicked && <ContactPage contact={colectContact} contactId={contactId} />}
+
+      {addContactClicked && <ContactAddPage userId={contacts} />}
+
+      {editPageClicked && <ContactEditPage selectedContact={contactId}/>}
+      
 
 
     </div>

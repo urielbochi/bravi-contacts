@@ -2,16 +2,21 @@ import { useContext } from "react";
 import { ContactContext } from "../../Context/Event";
 import { createContact } from "../../Services";
 
-function ContactAddPage() {
-    const { contactList, newContactFields, setNewContactFields, setContactList, contacts, setAddContactClicked, }:any = useContext(ContactContext);
+function ContactAddPage({userId}:any) {
+    const { contactList, newContactFields, setNewContactFields, setContactList, setAddContactClicked, }:any = useContext(ContactContext);
     const handleChange = ({target}:any) => {
         const {name, value} = target
         setNewContactFields({
             ...newContactFields,
             [name]: value,
         })
-        
       }
+
+  function addContactCallbacks() { 
+    createContact(newContactFields, contactList, setContactList, userId);
+    setAddContactClicked(false)
+    setNewContactFields({})
+  }
     return(
         <div className='split right high-grade'>
         <div className='close__contact' onClick={() => setAddContactClicked(false)}>X</div>
@@ -34,7 +39,7 @@ function ContactAddPage() {
               <input name='whatsapp' type="text" required={true} onChange={handleChange} />
               <label>Whatsapp</label>
             </div>
-            <button type="button" className="btn" onClick={() => createContact(newContactFields, contactList, setContactList, contacts)}>SAVE</button>
+            <button type="button" className="btn" onClick={() => addContactCallbacks()}>SAVE</button>
           </div>
         </div>
       </div>

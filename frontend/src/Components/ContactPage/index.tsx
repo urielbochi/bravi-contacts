@@ -28,8 +28,8 @@ function ContactPage({contact, contactId}:any) {
                 <h3 className='userinfo__padding'>{contact.phone}</h3>
                 <h3 className='userinfo__padding'>{contact.email}</h3>
                 <h3 className='userinfo__padding'>{contact.whatsapp}</h3>
+                <button className='btn' onClick={() => setEditPageClicked(true)}>Edit contact</button>
                 <button className='delete' onClick={() => deleteContactCalls()}>Delete contact</button>
-                <button className='delete' onClick={() => setEditPageClicked(true)}>Edit contact</button>
             </div>
         </div>
     )
