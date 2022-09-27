@@ -36,12 +36,17 @@ function ContactEditPage({ selectedContact }: any) {
         setEditPageClicked(false);
     }
 
+    const closeEditEvents = () => {
+        setEditPageClicked(false);
+        setNewContactFields({});
+    }
+
 
 
     return (
         <div>
             <div className='split right high-grade'>
-                <div className='close__contact' onClick={() => setEditPageClicked(false)}>X</div>
+                <div className='close__contact' onClick={() => closeEditEvents()}>X</div>
                 <div className='add__right color__white'>
                     <h1 className='add__title'>Edit a contact</h1>
                     <div>

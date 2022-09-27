@@ -24,16 +24,13 @@ function Contacts() {
 
   let { contacts } = useParams();
 
-
-
-  // const [contactList, setContactList] = useState<IContact[]>([]);
   const [individualContact, setIndividualContact] = useState<IContact[]>([]);
   const [contactId, setContactId] = useState<number>();
-  const [colectContact, setColectContact] = useState<any>([]);
+  const [colectContact, setColectContact] = useState<IContact[]>([]);
   const [searchBarTerm, setSearchBarTerm] = useState<string>("");
   {/* 
 // @ts-ignore */}
-  const { contactList, setContactList, isContactClicked, setContactClicked, addContactClicked, setAddContactClicked, editPageClicked } = useContext(ContactContext);
+  const { contactList, setContactList, isContactClicked, setContactClicked, addContactClicked, setAddContactClicked, editPageClicked, setNewContactFields } = useContext(ContactContext);
 
 
   useEffect(() => {
@@ -50,12 +47,12 @@ function Contacts() {
   }, [searchBarTerm])
 
 
-      console.log(searchBarTerm)
+  console.log(searchBarTerm)
 
 
 
 
-  function recoverContactOnClick(contactId: number, item: IContact) {
+  function recoverContactOnClick(contactId: number, item: IContact[]) {
     const pushContact = async () => {
       const user = await getContactById(setIndividualContact, contactId);
     };
@@ -66,8 +63,13 @@ function Contacts() {
     setColectContact(item);
   }
 
-  function handleChange({target}:any) {
+  function handleChange({ target }: any) {
     setSearchBarTerm(target.value)
+  }
+
+  function addEventButtonClickedEvents(){
+    setAddContactClicked(true);
+    setNewContactFields({});
   }
 
 
@@ -77,7 +79,7 @@ function Contacts() {
       <div className='navbar'>
         <img className='resize' src={Burguer} />
         <h1 className=''>Contacts</h1>
-        <img className='resize' src={Plus} onClick={() => setAddContactClicked(true)} />
+        <img className='resize' src={Plus} onClick={() => addEventButtonClickedEvents()} />
       </div>
       <div className='search__center'>
         <input type="text" className='search__contact' onChange={handleChange} value={searchBarTerm} />
@@ -85,7 +87,7 @@ function Contacts() {
       <div>
       </div>
       <ul className='contactList__container striped-list split left'>
-        {contactList.map((item: IContact) => {
+        {contactList.map((item: any) => {
           return (
             <div>
               <div className='split right'>
@@ -107,8 +109,8 @@ function Contacts() {
 
       {addContactClicked && <ContactAddPage userId={contacts} />}
 
-      {editPageClicked && <ContactEditPage selectedContact={contactId}/>}
-      
+      {editPageClicked && <ContactEditPage selectedContact={contactId} />}
+
 
 
     </div>

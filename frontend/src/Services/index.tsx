@@ -1,5 +1,5 @@
 import axios from 'axios';
-import IContact from '../Components/Contacts/index';
+import { IContact, IContactFields } from '../Components/Types/type';
 
 export async function getContacts(setContactList: any, params: any) {
     axios.get(`http://localhost:3001/contacts/${params}`).then((response) => {
@@ -20,7 +20,7 @@ export async function getContactById(setIndividualContact: any, contactId: numbe
 }
 
 
-export async function createContact(newContactFields: any, contactList: any, setContactList: any, params: any) {
+export async function createContact(newContactFields: IContactFields, contactList:IContact[], setContactList: any, params: any) {
     axios.post("http://localhost:3001/contacts/", {
         name: newContactFields.name,
         phone: newContactFields.phone,
@@ -38,7 +38,7 @@ export async function deleteContact(contactId: any) {
     axios.delete(`http://localhost:3001/contacts/${contactId}`).then((response) => { }).catch((err) => console.log(err));
 }
 
-export async function editContact(newContactFields: any, contactId: number) {
+export async function editContact(newContactFields: IContactFields, contactId: number) {
     axios
         .put(`http://localhost:3001/contacts/${contactId}`, {
             name: newContactFields.name,

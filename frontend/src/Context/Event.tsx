@@ -1,20 +1,11 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { getContacts } from "../Services";
+import { IContact, IContactFields } from "../Components/Types/type";
 
 {/* 
 // @ts-ignore */}
 export const ContactContext = React.createContext();
 
-
-interface IContact {
-    id: number;
-    name: string;
-    phone: string;
-    email: string;
-    whatsapp: string;
-    image: string;
-}
 
 type Props = {
     children?: React.ReactNode;
@@ -35,7 +26,7 @@ export default function ContactProvider({ children }: Props) {
     const [isContactClicked, setContactClicked] = useState<boolean>(false);
     const [addContactClicked, setAddContactClicked] = useState<boolean>(false);
     const [editPageClicked, setEditPageClicked] = useState<boolean>(false); 
-    const [newContactFields, setNewContactFields] = useState<object>(fields);
+    const [newContactFields, setNewContactFields] = useState<IContactFields>(fields);
 
 
 
