@@ -12,4 +12,4 @@ app.use(express.json())
 app.use(cors())
 app.use('/', root); 
 
-app.listen(3001, () => console.log("Conectado"))
+app.listen(3001, () => console.log("Conectado na porta 3001"))
