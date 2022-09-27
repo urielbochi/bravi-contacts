@@ -1,25 +1,79 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getContacts } from "../Services";
 
 {/* 
 // @ts-ignore */}
 export const ContactContext = React.createContext();
 
-type Props = {
-    title: string;
-    children?: React.ReactNode;
-  };
 
-export default function ContextProvider({ children }: Props) {
+interface IContact {
+    id: number;
+    name: string;
+    phone: string;
+    email: string;
+    whatsapp: string;
+    image: string;
+}
+
+type Props = {
+    children?: React.ReactNode;
+};
+
+let fields = {
+    name: "",
+    phone: "",
+    email: "",
+    whatsapp: ""
+  }
+
+export default function ContactProvider({ children }: Props) {
+
+    
+    let { contacts } = useParams()
+    const [contactList, setContactList] = useState<IContact[]>([]);
+    const [isContactClicked, setContactClicked] = useState<boolean>(false);
+    const [addContactClicked, setAddContactClicked] = useState<boolean>(false);
+    const [editPageClicked, setEditPageClicked] = useState<boolean>(false); 
+    const [newContactFields, setNewContactFields] = useState<object>(fields);
+
+
+
+
+
+    useEffect(() => {
+        const pushContacts = async () => {
+            const user = await getContacts(setContactList, contacts);
+        };
+
+        pushContacts();
+    }, [])
+
+    useEffect(() => {
+
+    }, [contactList])
+
+
 
 
 
     return (
         <ContactContext.Provider
-          value={{
-          
-          }}
+            value={{
+                contacts,
+                contactList,
+                setContactList,
+                isContactClicked,
+                setContactClicked,
+                addContactClicked,
+                setAddContactClicked,
+                editPageClicked,
+                setEditPageClicked,
+                newContactFields,
+                setNewContactFields
+            }}
         >
-          {children}
+            {children}
         </ContactContext.Provider>
-      );
-    }
+    );
+}
