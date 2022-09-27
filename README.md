@@ -2,6 +2,8 @@
 
 Uma lista de contatos onde você pode adicionar, remover ou editar um contato. Cada usuário possuí sua própria lista de contatos. Não foi utilizado JWT para o desenvolvimento dessa aplicação, portanto, o acesso aos usuários é através do id contido na URL. 
 
+Há uma query logo abaixo que após ser executada, popula o banco de dados com 5 usuários. Apenas o usuário /1 e usuário /2 estão populados com contatos. É possível adicionar novos ao conferir a documentação da API.
+
 Exemplo:
 
 ```http

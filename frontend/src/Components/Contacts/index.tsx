@@ -24,7 +24,7 @@ function Contacts() {
 
   let { contacts } = useParams();
 
-  const [individualContact, setIndividualContact] = useState<IContact[]>([]);
+  const [setIndividualContact] = useState<IContact[]>([]);
   const [contactId, setContactId] = useState<number>();
   const [colectContact, setColectContact] = useState<IContact[]>([]);
   const [searchBarTerm, setSearchBarTerm] = useState<string>("");
@@ -40,16 +40,6 @@ function Contacts() {
 
     pushContacts();
   }, [])
-
-
-  useEffect(() => {
-
-  }, [searchBarTerm])
-
-
-  console.log(searchBarTerm)
-
-
 
 
   function recoverContactOnClick(contactId: number, item: IContact[]) {
@@ -91,7 +81,7 @@ function Contacts() {
           return (
             <div>
               <div className='split right'>
-                {isContactClicked && <img src={`https://joeschmoe.io/api/v1/${contactId}`} />}
+                {isContactClicked && <img alt='User Avatar' src={`https://joeschmoe.io/api/v1/${contactId}`} />}
               </div>
               <li className='contacts__name' onClick={() => recoverContactOnClick(item.id, item)}>
                 <img src={`https://joeschmoe.io/api/v1/${item.id}`} className="user__photo" />
