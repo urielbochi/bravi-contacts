@@ -39,24 +39,6 @@ export default function ContactProvider({ children }: Props) {
 
 
 
-
-
-    useEffect(() => {
-        const pushContacts = async () => {
-            const user = await getContacts(setContactList, contacts);
-        };
-
-        pushContacts();
-    }, [])
-
-    useEffect(() => {
-
-    }, [contactList])
-
-
-
-
-
     return (
         <ContactContext.Provider
             value={{
