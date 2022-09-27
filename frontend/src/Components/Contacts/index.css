@@ -253,3 +253,7 @@ ul.striped-list>li:last-child {
 .userinfo__padding {
     padding-bottom: 15px;
 }
+
+.cursor__pointer {
+    cursor: pointer;
+}

@@ -30,7 +30,7 @@ function Contacts() {
   const [searchBarTerm, setSearchBarTerm] = useState<string>("");
   {/* 
 // @ts-ignore */}
-  const { contactList, setContactList, isContactClicked, setContactClicked, addContactClicked, setAddContactClicked, editPageClicked, setNewContactFields } = useContext(ContactContext);
+  const { contactList, setContactList, isContactClicked, setContactClicked, addContactClicked, setAddContactClicked, editPageClicked, setNewContactFields, setEditPageClicked } = useContext(ContactContext);
 
 
   useEffect(() => {
@@ -60,6 +60,7 @@ function Contacts() {
   function addEventButtonClickedEvents(){
     setAddContactClicked(true);
     setNewContactFields({});
+    setEditPageClicked(false)
   }
 
 
@@ -69,7 +70,7 @@ function Contacts() {
       <div className='navbar'>
         <img className='resize' src={Burguer} />
         <h1 className=''>Contacts</h1>
-        <img className='resize' src={Plus} onClick={() => addEventButtonClickedEvents()} />
+        <img className='resize cursor__pointer' src={Plus} onClick={() => addEventButtonClickedEvents()} />
       </div>
       <div className='search__center'>
         <input type="text" className='search__contact' onChange={handleChange} value={searchBarTerm} />
