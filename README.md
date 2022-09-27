@@ -5,11 +5,11 @@ Uma lista de contatos onde você pode adicionar, remover ou editar um contato. C
 Exemplo:
 
 ```http
-`http://localhost:3001/contacts/2`  // Acessa o usuário 2
+`http://localhost:3001/2`  // Acessa o usuário 2
 ```
 
 ```http
-`http://localhost:3001/contacts/1`  // Acessa o usuário 1
+`http://localhost:3001/1`  // Acessa o usuário 1
 ```
 
 
@@ -31,9 +31,15 @@ Exemplo:
   ````
 
 * Em seguida, acesse a pasta backend
+
   * Abra seu terminal dentro da pasta backend
-    * Digite o comando **npm install**
-      * Repita o mesmo processo, só que dessa vez, na pasta frontend.
+  *  Digite o comando **npm install**
+
+  * Repita o mesmo processo, só que dessa vez, na pasta frontend.
+
+* **Para os próximos passos, você deve ter instalado em sua máquina o [My SQL Workbench](https://www.mysql.com/products/workbench/), pois será necessária a execução de uma query.**
+  * Abra o arquivo **ContactsQuery** localizado no destino ``bravi-contacts\backend`` com o programa My SQL Workbench.
+  * Execute o script através do botão de raio localizado no topo.
 
 Exemplo (Cadastro):
 
