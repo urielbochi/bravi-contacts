@@ -82,10 +82,10 @@ function Contacts() {
           return (
             <div>
               <div className='split right'>
-                {isContactClicked && <img alt='User Avatar' src={`https://joeschmoe.io/api/v1/${contactId}`} />}
+                {isContactClicked && <img alt='User Avatar' className='contact__photo' src={`https://robohash.org/${contactId}`} />}
               </div>
               <li className='contacts__name' onClick={() => recoverContactOnClick(item.id, item)}>
-                <img src={`https://joeschmoe.io/api/v1/${item.id}`} className="user__photo" />
+                <img src={`https://robohash.org/${item.id}`} className="user__photo" />
                 <div className='user__info'>
                   <h1 className='contact__padding'>{item.name}</h1>
                   <h1 className='contact__phone'>{item.phone}</h1>

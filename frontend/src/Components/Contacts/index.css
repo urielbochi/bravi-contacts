@@ -257,3 +257,9 @@ ul.striped-list>li:last-child {
 .cursor__pointer {
     cursor: pointer;
 }
+
+.contact__photo {
+    width: 100%;
+    max-width: 600px;
+    margin-left: 200px;
+}
